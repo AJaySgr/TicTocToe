@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tic and Toe</title>
+</head>
+<body class="bg-violet-400">
+    <div class="items-center font-bold p-10 m-10 text-4xl text-center ">
+        <div class="flex">
+            <div  onclick="handle(this)"id="0" class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)" id="1" class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)" id="2" class="border w-28 h-28 p-8"></div>
+        </div>
+        <div class="flex">
+            <div onclick="handle(this)" id="3" class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)" id="4" class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)" id="5" class="border w-28 h-28 p-8"></div>
+        </div>
+        <div class="flex">
+            <div onclick="handle(this)"id="6" class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)" id="7"class="border w-28 h-28 p-8"></div>
+            <div onclick="handle(this)"id="8" class="border w-28 h-28 p-8"></div>
+        </div>
+    </div>
+
+    <div class="font-bold p-10 m-10 text-4xl text-center text-red-600">
+        <H1 id="msg"></H1>
+    </div>
+       
+    
+</body>
+<script>
+     let curPlayer = 'X'
+    let arr = Array(9).fill(null)
+    function checkWinner() {
+            if (
+                (arr[0] !== null && arr[0] == arr[1] && arr[1] == arr[2]) ||
+                (arr[3] !== null && arr[3] == arr[4] && arr[4] == arr[5]) ||
+                (arr[6] !== null && arr[6] == arr[7] && arr[7] == arr[8]) ||
+                (arr[0] !== null && arr[0] == arr[3] && arr[3] == arr[6]) ||
+                (arr[1] !== null && arr[1] == arr[4] && arr[4] == arr[7]) ||
+                (arr[2] !== null && arr[2] == arr[5] && arr[5] == arr[8]) ||
+                (arr[0] !== null && arr[0] == arr[4] && arr[4] == arr[8]) ||
+                (arr[2] !== null && arr[2] == arr[4] && arr[4] == arr[6])
+            ) {
+                document.getElementById("msg").textContent =`Winner is ${curPlayer}`
+                return;
+            }
+
+            if (!arr.some((e) => e === null)) {
+                document.getElementById("msg").textContent="Draw!!"
+                //document.write(`Draw!!`);
+                return;
+            }
+        }
+   
+   
+    function handle(el){
+       
+        const id=Number(el.id)
+        if(arr[id]!==null){
+            return;
+        }
+        arr[id]=curPlayer
+       el.innerText=curPlayer
+       checkWinner()
+       curPlayer=curPlayer==="X"?"O":"X"
+      
+       
+
+       
+    }
+</script>
+</html>
